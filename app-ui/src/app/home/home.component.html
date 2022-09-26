@@ -1,0 +1,14 @@
+<div class="center-element">
+  <div>
+    <h2 class="text-center">My clan</h2>
+    <button (click)="displayForm()" class="add-btn">
+      <span style="font-size: 16px"> Create new Unicorn </span>
+    </button>
+    <div
+      [ngClass]="{
+        'form-container': formCollapsed
+      }"
+    ></div>
+  </div>
+</div>
+<app-list-unicorn></app-list-unicorn>

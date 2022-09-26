@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -9,7 +10,12 @@ const routerOptions: ExtraOptions = {
 };
 
 const routes: Routes = [
-  // { path: 'home', component: HomeComponent, title: 'Home', },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  { path: 'home', component: HomeComponent, title: 'Home' },
   // { path: 'profile/:id', component: ProfileComponent },
   // { path: '404', component: NotFoundComponent, title: 'Not Found'},
   {
