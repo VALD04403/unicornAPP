@@ -15,7 +15,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
-  { path: 'home', component: HomeComponent, title: 'Home' },
+  { path: 'home', component: HomeComponent, title: 'Unicorns' },
   // { path: 'profile/:id', component: ProfileComponent },
   // { path: '404', component: NotFoundComponent, title: 'Not Found'},
   {

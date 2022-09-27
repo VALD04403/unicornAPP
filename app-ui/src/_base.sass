@@ -1,6 +1,7 @@
 $font-stack: 'Product Sans', sans-serif
 $text-color: #2E3A59
 $primary-color: #4C6FFF
+$margin-default: 8px
 
 html, body
   font: 100% $font-stack
@@ -14,5 +15,45 @@ html, body
     display: flex
     width: 100%
 
+.vertical-align
+    display: flex
+    flex-direction: column
+
 .text-center
     text-align: center
+
+.btn-primary
+    background-color: $primary-color
+    color: white
+    border-radius: 5px
+    border: 1px solid $primary-color
+    padding: 10px
+    cursor: pointer
+    box-shadow: rgb(145 158 171 / 24%) 0px 8px 16px 0px
+    transition: all 0.25s
+    &:hover 
+       transform: scale(1.015)
+
+.card
+    box-shadow: rgb(145 158 171 / 24%) 0px 8px 16px 0px
+    border-radius: 18px
+    padding: 20px
+
+.form-control
+    padding: 10px
+    border: 1px solid #919cab
+    border-radius: 5px
+
+.form-label
+    font-size: 14px
+
+.mt-1
+    margin-top: $margin-default
+.mt-2
+    margin-top: 2 * $margin-default
+.mt-3
+    margin-top: 3 * $margin-default
+.mt-4
+    margin-top: 4 * $margin-default
+.mt-5
+    margin-top: 5 * $margin-default

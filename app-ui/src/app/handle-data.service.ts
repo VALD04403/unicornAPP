@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { UnicornType } from './types/unicorn-type';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +19,12 @@ export class HandleDataService {
     return this.unicorns$.asObservable();
   }
 
-  getUnicorns() {}
+  getUnicorns() {
+    const data: any = localStorage.getItem('unicorns_list');
+    this.unicorns = JSON.parse(data);
+  }
 
-  addUnicorn() {}
-
-  updateUnicorns() {}
+  updateUnicorns(newData: UnicornType[]) {
+    localStorage.setItem('unicorns_list', JSON.stringify(newData));
+  }
 }

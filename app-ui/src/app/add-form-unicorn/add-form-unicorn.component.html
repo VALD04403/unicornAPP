@@ -1,0 +1,49 @@
+<div class="card">
+  <form [formGroup]="addForm" (ngSubmit)="save()">
+    <div class="vertical-align">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        placeholder="ex: Faye"
+      />
+    </div>
+    <div class="vertical-align mt-1">
+      <label for="gender" class="form-label">Gender</label>
+      <input
+        type="text"
+        class="form-control"
+        id="gender"
+        formControlName="gender"
+        placeholder="F/M/N"
+      />
+    </div>
+    <div class="vertical-align mt-1">
+      <label for="age" class="form-label">Age</label>
+      <input
+        type="number"
+        class="form-control"
+        id="age"
+        formControlName="age"
+        placeholder="0 to 1000"
+        min="0"
+        max="1000"
+      />
+    </div>
+    <div class="vertical-align mt-1">
+      <label for="color" class="form-label">Color</label>
+      <input
+        type="text"
+        class="form-control"
+        id="color"
+        formControlName="color"
+        placeholder="#000000"
+      />
+    </div>
+    <div class="center-element mt-2">
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  </form>
+</div>
