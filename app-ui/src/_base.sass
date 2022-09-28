@@ -1,6 +1,8 @@
 $font-stack: 'Product Sans', sans-serif
 $text-color: #2E3A59
 $primary-color: #4C6FFF
+$secondary-color: #919cab
+$error-color: #FF3D71
 $margin-default: 8px
 
 html, body
@@ -22,17 +24,33 @@ html, body
 .text-center
     text-align: center
 
-.btn-primary
-    background-color: $primary-color
+.btn
     color: white
     border-radius: 5px
-    border: 1px solid $primary-color
     padding: 10px
     cursor: pointer
     box-shadow: rgb(145 158 171 / 24%) 0px 8px 16px 0px
     transition: all 0.25s
     &:hover 
        transform: scale(1.015)
+
+.btn-primary
+    background-color: $primary-color
+    border: 1px solid $primary-color
+
+.btn-outlined-primary
+    background-color: white 
+    color: $primary-color
+    border: 1px solid $primary-color
+
+.btn-secondary
+    background-color: $secondary-color
+    border: 1px solid $secondary-color
+
+.btn-outlined-secondary
+    background-color: white 
+    color: $secondary-color
+    border: 1px solid $secondary-color
 
 .card
     box-shadow: rgb(145 158 171 / 24%) 0px 8px 16px 0px
@@ -41,6 +59,13 @@ html, body
 
 .form-control
     padding: 10px
+    border: 1px solid #919cab
+    border-radius: 5px
+
+.form-control--error
+    border: 1px solid $error-color
+
+.fieldset-custom
     border: 1px solid #919cab
     border-radius: 5px
 
@@ -57,3 +82,21 @@ html, body
     margin-top: 4 * $margin-default
 .mt-5
     margin-top: 5 * $margin-default
+
+.m-1
+    margin: $margin-default
+.m-2
+    margin: 2 * $margin-default
+.m-3
+    margin: 3 * $margin-default
+.m-4
+    margin: 4 * $margin-default
+.m-5
+    margin: 5 * $margin-default
+
+.pointer 
+    cursor: pointer
+
+.text-error
+    color:$error-color
+    font-size: 12px

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="max-width: 300px">
   <form [formGroup]="addForm" (ngSubmit)="save()">
     <div class="vertical-align">
       <label for="name" class="form-label">Name</label>
@@ -8,19 +8,55 @@
         id="name"
         formControlName="name"
         placeholder="ex: Faye"
+        [ngClass]="{
+          'form-control--error': addForm.controls['name'].errors && isSubmitted
+        }"
       />
+      <span
+        *ngIf="addForm.controls['name'].errors && isSubmitted"
+        class="text-error"
+        >Ce champs est requis</span
+      >
     </div>
     <div class="vertical-align mt-1">
-      <label for="gender" class="form-label">Gender</label>
-      <input
-        type="text"
-        class="form-control"
-        id="gender"
-        formControlName="gender"
-        placeholder="F/M/N"
-      />
+      <fieldset class="fieldset-custom">
+        <legend>Gender</legend>
+        <input
+          type="radio"
+          class="pointer"
+          id="kraken"
+          name="gender"
+          formControlName="gender"
+          value="M"
+        />
+
+        <label class="pointer" for="kraken">Male</label><br />
+        <input
+          type="radio"
+          class="mt-1 pointer"
+          id="sasquatch"
+          name="gender"
+          formControlName="gender"
+          value="F"
+        />
+        <label class="pointer" for="sasquatch">Female</label><br />
+        <input
+          type="radio"
+          class="mt-1 pointer"
+          id="neutral"
+          name="gender"
+          formControlName="gender"
+          value="N"
+        />
+        <label class="pointer" for="neutral">Don't want to be defined</label>
+      </fieldset>
+      <span
+        *ngIf="addForm.controls['gender'].errors && isSubmitted"
+        class="text-error"
+        >Ce champs est requis</span
+      >
     </div>
-    <div class="vertical-align mt-1">
+    <div class="vertical-align mt-1" style="width: 120px !important">
       <label for="age" class="form-label">Age</label>
       <input
         type="number"
@@ -30,9 +66,17 @@
         placeholder="0 to 1000"
         min="0"
         max="1000"
+        [ngClass]="{
+          'form-control--error': addForm.controls['age'].errors && isSubmitted
+        }"
       />
+      <span
+        *ngIf="addForm.controls['age'].errors && isSubmitted"
+        class="text-error"
+        >Ce champs est requis</span
+      >
     </div>
-    <div class="vertical-align mt-1">
+    <div class="vertical-align mt-1" style="width: 120px !important">
       <label for="color" class="form-label">Color</label>
       <input
         type="text"
@@ -40,10 +84,26 @@
         id="color"
         formControlName="color"
         placeholder="#000000"
+        [ngClass]="{
+          'form-control--error': addForm.controls['color'].errors && isSubmitted
+        }"
       />
+      <span
+        *ngIf="addForm.controls['color'].errors && isSubmitted"
+        class="text-error"
+        >{{
+          addForm.controls["color"].errors?.required
+            ? "Ce champs est requis"
+            : addForm.controls["color"].errors?.color
+            ? "Le format de couleur n'est pas le bon"
+            : ""
+        }}</span
+      >
     </div>
-    <div class="center-element mt-2">
-      <button type="submit" class="btn btn-primary">Create</button>
+    <div class="center-element mt-3">
+      <button style="width: 110px" type="submit" class="btn btn-primary">
+        Create
+      </button>
     </div>
   </form>
 </div>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { CustomValidators } from '../custom-validators.class';
+import { HandleDataService } from '../handle-data.service';
 
 @Component({
   selector: 'app-add-form-unicorn',
@@ -7,16 +9,26 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./add-form-unicorn.component.sass'],
 })
 export class AddFormUnicornComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  isSubmitted: boolean = false;
+  @Output() handleClose: EventEmitter<any> = new EventEmitter();
 
-  addForm = this.fb.group({
-    name: [''],
-    age: [''],
-    gender: [''],
-    color: [''],
+  constructor(private fb: FormBuilder, private service: HandleDataService) {}
+
+  addForm: any = this.fb.group({
+    name: ['', [Validators.required]],
+    age: ['', [Validators.required]],
+    gender: ['', [Validators.required]],
+    color: ['', [Validators.required, CustomValidators.hexColorValidator]],
   });
 
   ngOnInit(): void {}
 
-  save() {}
+  save() {
+    this.isSubmitted = true;
+    if (this.addForm.valid) {
+      this.service.createUnicorn(this.addForm?.value);
+      this.isSubmitted = false;
+      this.handleClose.emit();
+    }
+  }
 }

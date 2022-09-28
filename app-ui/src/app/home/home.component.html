@@ -1,18 +1,29 @@
 <div class="center-element">
-  <div>
+  <div style="width: 100%">
     <h2 class="text-center">My clan</h2>
     <div class="center-element">
-      <button (click)="displayForm()" class="btn-primary">
-        <span style="font-size: 16px"> Create new Unicorn </span>
+      <button
+        (click)="displayForm()"
+        class="btn"
+        [ngClass]="{
+          'btn-outlined-secondary': formCollapsed,
+          'btn-primary': !formCollapsed
+        }"
+      >
+        <span style="font-size: 16px"
+          >{{ formCollapsed ? "Cancel" : "Create new Unicorn" }}
+        </span>
       </button>
     </div>
     <div
-      class="center-element"
+      class="center-element container hide-container"
       [ngClass]="{
-        'form-container': formCollapsed
+        'display-form-container': formCollapsed
       }"
     >
-      <app-add-form-unicorn></app-add-form-unicorn>
+      <app-add-form-unicorn
+        (handleClose)="displayForm()"
+      ></app-add-form-unicorn>
     </div>
   </div>
 </div>
