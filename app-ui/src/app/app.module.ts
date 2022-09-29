@@ -8,6 +8,10 @@ import { ListUnicornComponent } from './list-unicorn/list-unicorn.component';
 import { AddUnicornFormComponent } from './add-unicorn-form/add-unicorn-form.component';
 import { AddFormUnicornComponent } from './add-form-unicorn/add-form-unicorn.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatesPageComponent } from './mates-page/mates-page.component';
+import { CreateMatesFormComponent } from './create-mates-form/create-mates-form.component';
+import { UnicornItemComponent } from './unicorn-item/unicorn-item.component';
+import { ListMatesComponent } from './list-mates/list-mates.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListUnicornComponent,
     AddUnicornFormComponent,
     AddFormUnicornComponent,
+    MatesPageComponent,
+    CreateMatesFormComponent,
+    UnicornItemComponent,
+    ListMatesComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

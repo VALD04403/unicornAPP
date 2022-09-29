@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { MatesPageComponent } from './mates-page/mates-page.component';
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -16,6 +17,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'home', component: HomeComponent, title: 'Unicorns' },
+  { path: 'mates', component: MatesPageComponent, title: 'Mates' },
   // { path: 'profile/:id', component: ProfileComponent },
   // { path: '404', component: NotFoundComponent, title: 'Not Found'},
   {

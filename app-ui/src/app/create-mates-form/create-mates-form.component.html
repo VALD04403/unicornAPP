@@ -1,0 +1,57 @@
+<div class="card">
+  <h4 *ngIf="selected?.length === 0" class="text-center">
+    Choose the first partner
+  </h4>
+
+  <h4 *ngIf="selected?.length === 1" class="text-center">
+    Choose the second partner
+  </h4>
+  <div
+    *ngIf="selected?.length === 0 || selected?.length === 1"
+    class="d-flex center-element"
+    style="align-items: center"
+  >
+    <div
+      class="icon-btn"
+      [ngClass]="{ disabled: current === 0 }"
+      (click)="handleCarousel(current - 1)"
+    >
+      <img src="assets/icons/arrow-left.svg" width="20" alt="arrow left" />
+    </div>
+    <app-unicorn-item [item]="unicorns[current]"> </app-unicorn-item>
+    <div
+      class="icon-btn"
+      [ngClass]="{ disabled: current + 1 === unicorns.length }"
+      (click)="handleCarousel(current + 1)"
+    >
+      <img src="assets/icons/arrow-right.svg" width="20" alt="arrow right" />
+    </div>
+  </div>
+  <div *ngIf="selected?.length === 2">
+    <div class="d-flex center-element flex-wrap">
+      <div class="vertical-align" style="align-items: center">
+        <h4 class="text-center" style="width: 120px">First partner</h4>
+        <app-unicorn-item [item]="selected[0]"> </app-unicorn-item>
+      </div>
+      <div class="vertical-align" style="align-items: center">
+        <h4 class="text-center" style="width: 120px">Second partner</h4>
+        <app-unicorn-item [item]="selected[1]"> </app-unicorn-item>
+      </div>
+    </div>
+  </div>
+  <div class="center-element mt-2">
+    <button
+      style="width: 125px"
+      (click)="createMate()"
+      class="btn m-1"
+      [ngClass]="{
+        'btn-primary': selected.length < 2,
+        'btn-purple': selected.length === 2
+      }"
+    >
+      <span style="font-size: 16px">{{
+        selected.length < 2 ? "Validate" : "Create Mates"
+      }}</span>
+    </button>
+  </div>
+</div>

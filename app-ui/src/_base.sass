@@ -3,7 +3,9 @@ $text-color: #2E3A59
 $primary-color: #4C6FFF
 $secondary-color: #919cab
 $light-color: #DEE1E5
+$extra-light-color: #F5F6F7
 $error-color: #FF3D71
+$purple-color: #9464c5
 $margin-default: 8px
 
 html, body
@@ -21,6 +23,9 @@ html, body
 .vertical-align
     display: flex
     flex-direction: column
+
+.flex-wrap
+    flex-wrap: wrap
 
 .text-center
     text-align: center
@@ -52,6 +57,24 @@ html, body
     background-color: white 
     color: $secondary-color
     border: 1px solid $secondary-color
+
+.btn-purple
+    background-color: $purple-color
+    border: 1px solid $purple-color
+
+.icon-btn
+    justify-content: center
+    align-items: center
+    display: flex
+    width: 30px
+    height: 30px
+    border-radius: 50%
+    background-color: $extra-light-color
+    cursor: pointer
+    transition: all 0.25s
+    box-shadow: rgb(145 158 171 / 24%) 0px 2px 6px 0px
+    &:hover 
+       transform: scale(1.04)
 
 .card
     box-shadow: rgb(145 158 171 / 24%) 0px 8px 16px 0px
@@ -101,3 +124,7 @@ html, body
 .text-error
     color:$error-color
     font-size: 12px
+
+.disabled
+    opacity: 0.4
+    cursor: not-allowed !important

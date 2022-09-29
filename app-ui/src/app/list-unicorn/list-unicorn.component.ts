@@ -12,7 +12,7 @@ export class ListUnicornComponent implements OnInit, OnDestroy {
   unicorns: UnicornType[] = [];
   private sub: Subscription = new Subscription();
 
-  constructor(public service: HandleDataService) {
+  constructor(private service: HandleDataService) {
     this.service.getUnicorns();
   }
 

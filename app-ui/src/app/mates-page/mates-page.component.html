@@ -1,17 +1,26 @@
 <div class="center-element">
   <div style="width: 100%">
-    <h1 class="text-center">My clan</h1>
+    <h1 class="text-center">Mates</h1>
+    <div class="center-element">
+      <button
+        style="width: 125px"
+        (click)="redirectList()"
+        class="btn m-1 btn-outlined-primary"
+      >
+        <span style="font-size: 16px">Return to List</span>
+      </button>
+    </div>
     <div class="center-element">
       <button
         (click)="displayForm()"
         class="btn m-1"
         [ngClass]="{
           'btn-outlined-secondary': formCollapsed,
-          'btn-primary': !formCollapsed
+          'btn-purple': !formCollapsed
         }"
       >
         <span style="font-size: 16px"
-          >{{ formCollapsed ? "Cancel" : "Create new Unicorn" }}
+          >{{ formCollapsed ? "Cancel" : "Create new Mates" }}
         </span>
       </button>
     </div>
@@ -21,19 +30,10 @@
         'display-form-container': formCollapsed
       }"
     >
-      <app-add-form-unicorn
+      <app-create-mates-form
         (handleClose)="displayForm()"
-      ></app-add-form-unicorn>
+      ></app-create-mates-form>
     </div>
-    <div class="center-element">
-      <button
-        style="width: 125px"
-        (click)="redirectMates()"
-        class="btn m-1 btn-purple"
-      >
-        <span style="font-size: 16px">Create Mates </span>
-      </button>
-    </div>
+    <app-list-mates [unicorns]="unicorns"></app-list-mates>
   </div>
 </div>
-<app-list-unicorn></app-list-unicorn>

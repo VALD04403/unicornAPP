@@ -25,6 +25,7 @@ export class HandleDataService {
   }
 
   updateUnicorns(newData: UnicornType[]) {
+    this.unicorns = newData;
     localStorage.setItem('unicorns_list', JSON.stringify(newData));
   }
 

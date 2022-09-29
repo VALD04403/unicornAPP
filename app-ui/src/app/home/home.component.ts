@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   formCollapsed: boolean = false;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   displayForm() {
     this.formCollapsed = !this.formCollapsed;
+  }
+
+  redirectMates() {
+    this.router.navigate(['/mates']);
   }
 }
