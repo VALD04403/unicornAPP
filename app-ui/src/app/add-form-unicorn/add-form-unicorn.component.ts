@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from '../custom-validators.class';
 import { HandleDataService } from '../handle-data.service';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-add-form-unicorn',
@@ -26,9 +27,11 @@ export class AddFormUnicornComponent implements OnInit {
   save() {
     this.isSubmitted = true;
     if (this.addForm.valid) {
-      this.service.createUnicorn(this.addForm?.value);
+      const newbie = { ...this.addForm.value, id: uuid() };
+      this.service.createUnicorn(newbie);
       this.isSubmitted = false;
       this.handleClose.emit();
+      this.addForm.reset();
     }
   }
 }
