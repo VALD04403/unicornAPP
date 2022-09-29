@@ -20,35 +20,35 @@
     </div>
     <div class="vertical-align mt-1">
       <fieldset class="fieldset-custom">
-        <legend>Gender</legend>
+        <legend class="form-label">Gender</legend>
         <input
           type="radio"
           class="pointer"
           id="kraken"
           name="gender"
           formControlName="gender"
-          value="M"
+          value="Male"
         />
 
-        <label class="pointer" for="kraken">Male</label><br />
+        <label class="pointer form-label" for="kraken">Male</label><br />
         <input
           type="radio"
           class="mt-1 pointer"
           id="sasquatch"
           name="gender"
           formControlName="gender"
-          value="F"
+          value="Female"
         />
-        <label class="pointer" for="sasquatch">Female</label><br />
+        <label class="pointer form-label" for="sasquatch">Female</label><br />
         <input
           type="radio"
           class="mt-1 pointer"
           id="neutral"
           name="gender"
           formControlName="gender"
-          value="N"
+          value="Other"
         />
-        <label class="pointer" for="neutral">Don't want to be defined</label>
+        <label class="pointer form-label" for="neutral">Other</label>
       </fieldset>
       <span
         *ngIf="addForm.controls['gender'].errors && isSubmitted"

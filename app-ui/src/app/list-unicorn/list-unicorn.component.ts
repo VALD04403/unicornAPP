@@ -18,7 +18,6 @@ export class ListUnicornComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.service.unicorns.subscribe((res: UnicornType[]) => {
-      console.log(res);
       this.unicorns = res;
     });
   }

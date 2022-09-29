@@ -30,9 +30,9 @@ export class HandleDataService {
 
   createUnicorn(newbie: UnicornType) {
     const data: any = localStorage.getItem('unicorns_list');
-    console.log(data);
     const newData: any = data ? JSON.parse(data) : [];
     newData.unshift(newbie);
+    this.unicorns = newData;
     localStorage.setItem('unicorns_list', JSON.stringify(newData));
   }
 }
