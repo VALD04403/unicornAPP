@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HandleDataService } from '../handle-data.service';
+import { BabyType } from '../types/baby-type';
 import { UnicornType } from '../types/unicorn-type';
 
 @Component({
@@ -10,8 +11,10 @@ import { UnicornType } from '../types/unicorn-type';
 })
 export class ListMatesComponent implements OnInit, OnDestroy {
   unicorns: UnicornType[] = [];
+  babies: BabyType[] = [];
   mates: any = [];
   private sub: Subscription = new Subscription();
+  private second_sub: Subscription = new Subscription();
 
   constructor(private service: HandleDataService) {}
 
@@ -20,10 +23,15 @@ export class ListMatesComponent implements OnInit, OnDestroy {
       this.unicorns = res;
       this.handleData();
     });
+    this.second_sub = this.service.babies.subscribe((res: BabyType[]) => {
+      this.babies = res;
+      this.handleData();
+    });
   }
 
   ngOnDestroy() {
     this.sub?.unsubscribe();
+    this.second_sub?.unsubscribe();
   }
 
   handleData() {
@@ -35,7 +43,10 @@ export class ListMatesComponent implements OnInit, OnDestroy {
       ) {
         newMates.push({
           id: item.mate,
-          mate: this.unicorns.filter((el: any) => el.mate === item.mate),
+          items: this.unicorns.filter((el: any) => el.mate === item.mate),
+          baby: this.babies[
+            this.babies.findIndex((el: BabyType) => el.parents === item.mate)
+          ],
         });
       }
     });

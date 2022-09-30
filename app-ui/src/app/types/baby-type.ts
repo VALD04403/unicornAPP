@@ -1,8 +1,7 @@
-export interface UnicornType {
+export interface BabyType {
   name: string;
-  age: number;
   color: string;
   gender: string;
   id: string;
-  mate: string;
+  parents: string;
 }

@@ -16,9 +16,8 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
-  { path: 'home', component: HomeComponent, title: 'Unicorns' },
+  { path: 'home', component: HomeComponent, title: 'My Clan' },
   { path: 'mates', component: MatesPageComponent, title: 'Mates' },
-  // { path: 'profile/:id', component: ProfileComponent },
   // { path: '404', component: NotFoundComponent, title: 'Not Found'},
   {
     path: '**',

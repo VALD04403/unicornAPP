@@ -16,6 +16,7 @@ export class MatesPageComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, public service: HandleDataService) {
     this.service.getUnicorns();
+    this.service.getUnicornBabies();
   }
 
   ngOnInit(): void {
