@@ -25,7 +25,7 @@
         (handleClose)="displayForm()"
       ></app-add-form-unicorn>
     </div>
-    <div class="center-element">
+    <div class="center-element" *ngIf="unicorns && unicorns.length > 1">
       <button
         style="width: 125px"
         (click)="redirectMates()"
@@ -36,4 +36,4 @@
     </div>
   </div>
 </div>
-<app-list-unicorn></app-list-unicorn>
+<app-list-unicorn [unicorns]="unicorns"></app-list-unicorn>

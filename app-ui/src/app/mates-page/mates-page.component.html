@@ -10,7 +10,7 @@
         <span style="font-size: 16px">Return to List</span>
       </button>
     </div>
-    <div class="center-element">
+    <div class="center-element" *ngIf="canMakeMates()">
       <button
         (click)="displayForm()"
         class="btn m-1"
@@ -25,6 +25,7 @@
       </button>
     </div>
     <div
+      *ngIf="canMakeMates()"
       class="center-element container hide-container"
       [ngClass]="{
         'display-form-container': formCollapsed
@@ -34,6 +35,6 @@
         (handleClose)="displayForm()"
       ></app-create-mates-form>
     </div>
-    <app-list-mates [unicorns]="unicorns"></app-list-mates>
+    <app-list-mates></app-list-mates>
   </div>
 </div>

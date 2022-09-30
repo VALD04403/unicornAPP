@@ -35,4 +35,8 @@ export class MatesPageComponent implements OnInit, OnDestroy {
   redirectList() {
     this.router.navigate(['/home']);
   }
+
+  canMakeMates() {
+    return this.unicorns?.filter((el: UnicornType) => !el.mate).length > 1;
+  }
 }

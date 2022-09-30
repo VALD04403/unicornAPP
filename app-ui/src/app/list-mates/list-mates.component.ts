@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HandleDataService } from '../handle-data.service';
 import { UnicornType } from '../types/unicorn-type';
@@ -8,29 +8,37 @@ import { UnicornType } from '../types/unicorn-type';
   templateUrl: './list-mates.component.html',
   styleUrls: ['./list-mates.component.sass'],
 })
-export class ListMatesComponent implements OnInit {
-  @Input() unicorns: UnicornType[] = [];
-  mates: UnicornType[] = [];
+export class ListMatesComponent implements OnInit, OnDestroy {
+  unicorns: UnicornType[] = [];
+  mates: any = [];
+  private sub: Subscription = new Subscription();
 
-  constructor() {}
+  constructor(private service: HandleDataService) {}
 
   ngOnInit(): void {
-    this.unicorns.map((item: UnicornType) => {
-      item?.mate && this.mates.push(item);
+    this.sub = this.service.unicorns.subscribe((res: UnicornType[]) => {
+      this.unicorns = res;
+      this.handleData();
     });
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+
+  handleData() {
     const newMates: any = [];
-    this.mates.map((item: UnicornType) => {
-      newMates.map((mate: any) => {
-        {
-          mate.map((el: UnicornType) => {
-            if (el.mate === item.mate) {
-              mate.push(item);
-            } else {
-              newMates.push([item]);
-            }
-          });
-        }
-      });
+    this.unicorns?.forEach((item: UnicornType) => {
+      if (
+        item.mate &&
+        newMates.filter((el: any) => el.id === item.mate).length === 0
+      ) {
+        newMates.push({
+          id: item.mate,
+          mate: this.unicorns.filter((el: any) => el.mate === item.mate),
+        });
+      }
     });
+    this.mates = newMates;
   }
 }

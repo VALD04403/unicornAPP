@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { HandleDataService } from '../handle-data.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { UnicornType } from '../types/unicorn-type';
 
 @Component({
@@ -8,21 +6,10 @@ import { UnicornType } from '../types/unicorn-type';
   templateUrl: './list-unicorn.component.html',
   styleUrls: ['./list-unicorn.component.sass'],
 })
-export class ListUnicornComponent implements OnInit, OnDestroy {
-  unicorns: UnicornType[] = [];
-  private sub: Subscription = new Subscription();
+export class ListUnicornComponent implements OnInit {
+  @Input() unicorns: UnicornType[] = [];
 
-  constructor(private service: HandleDataService) {
-    this.service.getUnicorns();
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.sub = this.service.unicorns.subscribe((res: UnicornType[]) => {
-      this.unicorns = res;
-    });
-  }
-
-  ngOnDestroy() {
-    this.sub?.unsubscribe();
-  }
+  ngOnInit(): void {}
 }

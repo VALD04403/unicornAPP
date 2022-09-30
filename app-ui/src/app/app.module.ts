@@ -12,6 +12,7 @@ import { MatesPageComponent } from './mates-page/mates-page.component';
 import { CreateMatesFormComponent } from './create-mates-form/create-mates-form.component';
 import { UnicornItemComponent } from './unicorn-item/unicorn-item.component';
 import { ListMatesComponent } from './list-mates/list-mates.component';
+import { MateCardComponent } from './mate-card/mate-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ListMatesComponent } from './list-mates/list-mates.component';
     CreateMatesFormComponent,
     UnicornItemComponent,
     ListMatesComponent,
+    MateCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

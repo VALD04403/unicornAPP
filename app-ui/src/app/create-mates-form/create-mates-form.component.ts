@@ -19,6 +19,7 @@ export class CreateMatesFormComponent implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
   @Output() handleClose: EventEmitter<any> = new EventEmitter();
 
+  all_unicorns: UnicornType[] = [];
   unicorns: UnicornType[] = [];
   selected: UnicornType[] = [];
   current: number = 0;
@@ -27,7 +28,8 @@ export class CreateMatesFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.service.unicorns.subscribe((res: UnicornType[]) => {
-      this.unicorns = res;
+      this.all_unicorns = res;
+      this.unicorns = res.filter((el: UnicornType) => !el?.mate);
     });
   }
 
@@ -51,10 +53,14 @@ export class CreateMatesFormComponent implements OnInit, OnDestroy {
       this.unicorns.splice(this.current, 1);
       this.current = 0;
     } else {
-      const newData = this.unicorns;
-      this.selected[0].mate = uuid();
-      this.selected[1].mate = uuid();
-      newData.push(...this.selected);
+      const mateId = uuid();
+      const newData = this.all_unicorns;
+      newData[
+        newData.findIndex((el: UnicornType) => el.id === this.selected[0].id)
+      ].mate = mateId;
+      newData[
+        newData.findIndex((el: UnicornType) => el.id === this.selected[1].id)
+      ].mate = mateId;
       this.service.updateUnicorns(newData);
       this.handleClose.emit();
       this.selected = [];
