@@ -18,11 +18,6 @@ const routes: Routes = [
   },
   { path: 'home', component: HomeComponent, title: 'My Clan' },
   { path: 'mates', component: MatesPageComponent, title: 'Mates' },
-  // { path: '404', component: NotFoundComponent, title: 'Not Found'},
-  {
-    path: '**',
-    redirectTo: '404',
-  },
 ];
 
 @NgModule({
