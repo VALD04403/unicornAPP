@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 })
 export class AddFormUnicornComponent implements OnInit {
   isSubmitted: boolean = false;
+  loading: boolean = false;
   @Output() handleClose: EventEmitter<any> = new EventEmitter();
 
   constructor(private fb: FormBuilder, private service: HandleDataService) {}
@@ -27,11 +28,15 @@ export class AddFormUnicornComponent implements OnInit {
   save() {
     this.isSubmitted = true;
     if (this.addForm.valid) {
+      this.loading = true;
       const newbie = { ...this.addForm.value, id: uuid() };
-      this.service.createUnicorn(newbie);
-      this.isSubmitted = false;
-      this.handleClose.emit();
-      this.addForm.reset();
+      setTimeout(() => {
+        this.service.createUnicorn(newbie);
+        this.isSubmitted = false;
+        this.handleClose.emit();
+        this.addForm.reset();
+        this.loading = false;
+      }, 1000);
     }
   }
 }

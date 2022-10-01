@@ -1,5 +1,13 @@
-<div *ngIf="mates.length > 0" class="d-flex flex-wrap center-element mt-5">
+<div
+  *ngIf="mates.length > 0; else noData"
+  class="flex-wrap center-element mt-5"
+>
   <div *ngFor="let mate of mates">
     <app-mate-card [mate]="mate"></app-mate-card>
   </div>
 </div>
+<ng-template #noData>
+  <div class="center-element mt-5">
+    <h2 class="text-center">Create your first Mate !</h2>
+  </div>
+</ng-template>

@@ -8,7 +8,7 @@
   </h4>
   <div
     *ngIf="selected?.length === 0 || selected?.length === 1"
-    class="d-flex center-element"
+    class="center-element"
     style="align-items: center"
   >
     <div
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div *ngIf="selected?.length === 2">
-    <div class="d-flex center-element flex-wrap">
+    <div class="center-element flex-wrap">
       <div class="vertical-align" style="align-items: center">
         <h4 class="text-center" style="width: 120px">First partner</h4>
         <app-unicorn-item [item]="selected[0]"> </app-unicorn-item>
@@ -45,6 +45,7 @@
       (click)="createMate()"
       class="btn m-1"
       [ngClass]="{
+        'loading disabled': loading,
         'btn-primary': selected.length < 2,
         'btn-purple': selected.length === 2
       }"

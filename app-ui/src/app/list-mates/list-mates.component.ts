@@ -44,8 +44,8 @@ export class ListMatesComponent implements OnInit, OnDestroy {
         newMates.push({
           id: item.mate,
           items: this.unicorns.filter((el: any) => el.mate === item.mate),
-          baby: this.babies[
-            this.babies.findIndex((el: BabyType) => el.parents === item.mate)
+          baby: this.babies?.[
+            this.babies?.findIndex((el: BabyType) => el.parents === item.mate)
           ],
         });
       }

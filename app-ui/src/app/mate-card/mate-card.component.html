@@ -51,7 +51,10 @@
       {{ mate.items[0].color }} <b>&</b> {{ mate.items[1].color }}
     </p>
   </div>
-  <div class="center-element mt-2" *ngIf="!mate.baby; else baby">
+  <div *ngIf="loading" class="mt-2">
+    <app-loader></app-loader>
+  </div>
+  <div class="center-element mt-2" *ngIf="!mate.baby && !loading">
     <button
       class="btn btn-primary"
       (click)="makeBaby()"
@@ -60,7 +63,7 @@
       Give birth
     </button>
   </div>
-  <ng-template #baby>
+  <div *ngIf="mate.baby && !loading">
     <div class="center-element mt-3">
       <div class="svg-container" style="min-width: 50px; min-height: 50px">
         <svg
@@ -92,5 +95,5 @@
         {{ mate.baby.color }}
       </p>
     </div>
-  </ng-template>
+  </div>
 </div>

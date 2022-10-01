@@ -12,6 +12,7 @@ import { HandleDataService } from '../handle-data.service';
 export class MateCardComponent implements OnInit {
   @Input()
   mate!: { id: string; items: UnicornType[]; baby: BabyType };
+  loading: boolean = false;
 
   constructor(private service: HandleDataService) {}
 
@@ -29,6 +30,7 @@ export class MateCardComponent implements OnInit {
   }
 
   makeBaby() {
+    this.loading = true;
     const baby: BabyType = {
       id: uuid(),
       parents: this.mate.items[0].mate,
@@ -44,6 +46,9 @@ export class MateCardComponent implements OnInit {
         .join('')
         .slice(0, 6)}`,
     };
-    this.service.createUnicornBaby(baby);
+
+    setTimeout(() => {
+      this.service.createUnicornBaby(baby);
+    }, 1000);
   }
 }

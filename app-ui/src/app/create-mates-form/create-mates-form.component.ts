@@ -23,6 +23,7 @@ export class CreateMatesFormComponent implements OnInit, OnDestroy {
   unicorns: UnicornType[] = [];
   selected: UnicornType[] = [];
   current: number = 0;
+  loading: boolean = false;
 
   constructor(private service: HandleDataService) {}
 
@@ -53,17 +54,21 @@ export class CreateMatesFormComponent implements OnInit, OnDestroy {
       this.unicorns.splice(this.current, 1);
       this.current = 0;
     } else {
-      const mateId = uuid();
-      const newData = this.all_unicorns;
-      newData[
-        newData.findIndex((el: UnicornType) => el.id === this.selected[0].id)
-      ].mate = mateId;
-      newData[
-        newData.findIndex((el: UnicornType) => el.id === this.selected[1].id)
-      ].mate = mateId;
-      this.service.updateUnicorns(newData);
-      this.handleClose.emit();
-      this.selected = [];
+      this.loading = true;
+      setTimeout(() => {
+        const mateId = uuid();
+        const newData = this.all_unicorns;
+        newData[
+          newData.findIndex((el: UnicornType) => el.id === this.selected[0].id)
+        ].mate = mateId;
+        newData[
+          newData.findIndex((el: UnicornType) => el.id === this.selected[1].id)
+        ].mate = mateId;
+        this.service.updateUnicorns(newData);
+        this.handleClose.emit();
+        this.selected = [];
+        this.loading = false;
+      }, 1000);
     }
   }
 }

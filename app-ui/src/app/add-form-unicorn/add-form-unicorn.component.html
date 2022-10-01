@@ -1,4 +1,4 @@
-<div class="card" style="max-width: 300px">
+<div class="card" style="width: 220px">
   <form [formGroup]="addForm" (ngSubmit)="save()">
     <div class="vertical-align">
       <label for="name" class="form-label">Name</label>
@@ -15,7 +15,7 @@
       <span
         *ngIf="addForm.controls['name'].errors && isSubmitted"
         class="text-error"
-        >Ce champs est requis</span
+        >This field is required</span
       >
     </div>
     <div class="vertical-align mt-1">
@@ -30,7 +30,7 @@
           value="Male"
         />
 
-        <label class="pointer form-label" for="kraken">Male</label><br />
+        <label class="form-label" for="gender">Male</label><br />
         <input
           type="radio"
           class="mt-1 pointer"
@@ -39,7 +39,7 @@
           formControlName="gender"
           value="Female"
         />
-        <label class="pointer form-label" for="sasquatch">Female</label><br />
+        <label class="form-label" for="gender">Female</label><br />
         <input
           type="radio"
           class="mt-1 pointer"
@@ -48,12 +48,12 @@
           formControlName="gender"
           value="Other"
         />
-        <label class="pointer form-label" for="neutral">Other</label>
+        <label class="form-label" for="gender">Other</label>
       </fieldset>
       <span
         *ngIf="addForm.controls['gender'].errors && isSubmitted"
         class="text-error"
-        >Ce champs est requis</span
+        >This field is required</span
       >
     </div>
     <div class="vertical-align mt-1" style="width: 120px !important">
@@ -73,35 +73,49 @@
       <span
         *ngIf="addForm.controls['age'].errors && isSubmitted"
         class="text-error"
-        >Ce champs est requis</span
+        >This field is required</span
       >
     </div>
-    <div class="vertical-align mt-1" style="width: 120px !important">
+    <div class="vertical-align mt-1">
       <label for="color" class="form-label">Color</label>
-      <input
-        type="text"
-        class="form-control"
-        id="color"
-        formControlName="color"
-        placeholder="#000000"
-        [ngClass]="{
-          'form-control--error': addForm.controls['color'].errors && isSubmitted
-        }"
-      />
+      <div class="d-flex" style="align-items: center">
+        <input
+          style="max-width: 98px"
+          type="text"
+          class="form-control"
+          id="color"
+          formControlName="color"
+          placeholder="#000000"
+          [ngClass]="{
+            'form-control--error':
+              addForm.controls['color'].errors && isSubmitted
+          }"
+        />
+        <div
+          *ngIf="addForm.controls['color'].value"
+          class="color-preview"
+          [ngStyle]="{ 'background-color': addForm.controls['color'].value }"
+        ></div>
+      </div>
       <span
         *ngIf="addForm.controls['color'].errors && isSubmitted"
         class="text-error"
         >{{
           addForm.controls["color"].errors?.required
-            ? "Ce champs est requis"
+            ? "This field is required"
             : addForm.controls["color"].errors?.color
-            ? "Le format de couleur n'est pas le bon"
+            ? "The color format is not correct"
             : ""
         }}</span
       >
     </div>
     <div class="center-element mt-3">
-      <button style="width: 110px" type="submit" class="btn btn-primary">
+      <button
+        style="width: 110px"
+        type="submit"
+        class="btn btn-primary"
+        [ngClass]="{ 'loading disabled': loading }"
+      >
         Create
       </button>
     </div>
